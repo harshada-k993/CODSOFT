@@ -1,0 +1,34 @@
+// Codsost internship
+// Name: Harshada Kolekar
+// TASK 1 :Create a c++ program that generates a random number and asks the user to guess it.
+//         Provide feedback on whether the guess is too high or too low until the user guesses the correct number. 
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+using namespace std;
+
+int main() 
+{ 
+    srand(static_cast<unsigned>(std::time(0)));  
+    int rndmnum = rand() % 100 + 1;  // this comment is to Get a random number between 1 and 100
+    int Numguess;
+    cout << "hey!! This is a number guessing game. You just have to guess the randomly generated number .\n All the best !!!\n";
+    cout << "Guess a number between 1 and 100 : ";
+
+    while (true) {
+        cin >> Numguess;
+
+        if (Numguess < rndmnum) 
+        {
+          cout << "Too low! Try again: ";
+        } else if (Numguess > rndmnum) {
+            cout << "Too high! Try again: ";
+        } else {
+            cout << " That's correct !!! . \n Congratulations! \nThe number was indeed " << rndmnum <<" You guessed it :)" << endl;
+            break; 
+        }
+    }
+
+    return 0;
+}
