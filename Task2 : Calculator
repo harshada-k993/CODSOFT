@@ -1,0 +1,49 @@
+// Codsost internship
+// Name: Harshada Kolekar
+// TASK 2 :Develpo a calculator program that performs basic arithmetic operations such as addition,
+//         subtraction,multiplication and division .Allow the user to input two numbers and choose an 
+//         operation to perform.
+ 
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    double num1, num2;   // numbers for operation
+    char op;   // operation
+
+    cout << "This is a calculator. Simply just enter two numbers and the operation to perform.\n";
+    cout << "Enter first number: \n";
+    cin >> num1;
+    cout << "Enter second number: \n";
+    cin >> num2;
+
+
+    cout << "Enter operation (+, -, *, /): \n";
+    cin >> op;
+
+
+    switch (op) {
+        case '+':
+            cout << "Result: " << num1 << " + "<< num2 << " = " << num1 + num2<< endl;
+            break;
+        case '-':
+            cout << "Result: " << num1 << " - "<< num2 << " = " << num1 - num2 << endl;
+            break;
+        case '*':
+            cout << "Result: " << num1 << " * "<< num2 << " = " <<num1 * num2 << endl;
+            break;
+        case '/':
+            if (num2 != 0) {
+                cout << "Result: " << num1 << " / "<< num2 << " = " << num1 / num2 << endl;
+            } else {
+                cout << "Error: Division by zero is not valid." << endl;
+            }
+            break;
+        default:
+            cout << "Error: Invalid operation." << endl;
+            break;
+    }
+
+    return 0;
+}
