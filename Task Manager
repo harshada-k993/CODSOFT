@@ -1,0 +1,118 @@
+// Codsost internship
+// Name: Harshada Kolekar
+// TASK 3 :    Build a simple console-based to-do list manager using c++ .that allows users to add, view, and delete tasks
+//                  Task Input: Allow users to input tasks they want to add to the list.
+//                  Add Task: Implement a function to add tasks to the list.
+//                  View Tasks: Display the list of tasks with their status (completed or pending).
+//                  Mark Task as Completed: Allow users to mark tasks as completed.
+//                  Remove Task: Provide an option to remove tasks from the list
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+// here it is structure which will represent a task.
+struct Task {
+    string description;
+    bool completed;
+
+    Task(const string& desc) : description(desc), completed(false) {}
+};
+
+// it is a global vector which will store the tasks.
+vector<Task> tasks;
+
+// Adding a task.
+void addTask() {
+    string description;
+    cout << "Enter task that use want to apply: ";
+    cin.ignore();
+    getline(cin, description);
+    tasks.push_back(Task(description));
+    cout << "Task added successfully!\n";
+}
+
+// Viewing a task.
+void viewTasks() {
+    if (tasks.empty()) {
+        cout << "No tasks in the list.\n";
+    } else {
+        cout << "Tasks in the list:\n";
+        for (size_t i = 0; i < tasks.size(); ++i) {
+            cout << i+1 << ". ";
+            if (tasks[i].completed) {
+                cout << "[Completed] ";
+            } else {
+                cout << "[Pending]   ";
+            }
+            cout << tasks[i].description << endl;
+        }
+    }
+}
+
+// Marking a task as completed.
+void markTaskCompleted() {
+    int index;
+    cout << "Enter the task number whick you want to mark as completed: ";
+    cin >> index;
+    if (index >= 1 && index <= static_cast<int>(tasks.size())) {
+        tasks[index-1].completed = true;
+        cout << "The given Task by is marked as completed.\n";
+    } else {
+        cout << "The task number given by you is Invalid .\n";
+    }
+}
+
+// removing a task.
+void removeTask() {
+    int index;
+    cout << "Enter task number which you want to remove: ";
+    cin >> index;
+    if (index >= 1 && index <= static_cast<int>(tasks.size())) {
+        tasks.erase(tasks.begin() + index - 1);
+        cout << "Task given by you is removed successfully.\n";
+    } else {
+        cout << "Task number given by you is Invalid.\n";
+    }
+}
+
+int main() {
+    int choice;
+
+    do {
+        
+        cout << "\n Hey guys !! This is a \n";
+        cout << " To-Do List Manager \n";
+        cout << "1. Add Task\n";
+        cout << "2. View Tasks\n";
+        cout << "3. Mark Task as Completed\n";
+        cout << "4. Remove Task\n";
+        cout << "5. Exit\n\n";
+        cout << "Enter your choice according to your preference: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                addTask();
+                break;
+            case 2:
+                viewTasks();
+                break;
+            case 3:
+                markTaskCompleted();
+                break;
+            case 4:
+                removeTask();
+                break;
+            case 5:
+                cout << "Exiting program.\n";
+                break;
+            default:
+                cout << "Sorry Your given choice is Invalid.\n";
+        }
+    } while (choice != 5);
+
+    return 0;
+}
